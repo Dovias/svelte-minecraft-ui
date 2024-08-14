@@ -77,5 +77,7 @@
 		width: 100%;
 		height: 100%;
 
+		background: url('panorama/fallback.webp') 0 0 / cover;
+
 	}
 </style>
