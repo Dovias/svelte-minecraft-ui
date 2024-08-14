@@ -1,17 +1,29 @@
-<div class="branding-container">
+<script context="module" lang="ts">
+	export type HeaderProps = {
+		splashText?: string
+	};
+</script>
+
+<script lang="ts">
+	export let splashText: HeaderProps['splashText'];
+</script>
+
+<header class="header">
 	<img src="branding.png" class="branding" alt="branding" />
-	<p class="splash">It came from space.</p>
-</div>
+	{#if splashText && splashText.trim().length > 0}
+		<p class="splash">{splashText}</p>
+	{/if}
+</header>
 
 
 <style>
-	.branding-container {
+	.header {
 		position: relative;
 	}
 
 	.branding {
 		width: 100%;
-		margin-bottom: 3em;
+
 	}
 
 	@keyframes splash {
@@ -30,7 +42,7 @@
 
 	.splash {
 		position: absolute;
-		bottom: 35%;
+		bottom: 0;
 		right: -21%;
 		
 		transform-style: preserve-3d;
