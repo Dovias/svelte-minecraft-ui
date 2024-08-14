@@ -1,9 +1,15 @@
-<script>
+<script lang="ts">
 	import Header from "$lib/title/Header.svelte";
 	import Panorama from "$lib/Panorama.svelte";
 	import NavigationMenu from "$lib/title/navigation/NavigationMenu.svelte";
 	import Footer from "$lib/title/Footer.svelte";
+
+	let branding = "Minecraft 1.21.1";
 </script>
+
+<svelte:head>
+	<title>{branding}</title>
+</svelte:head>
 
 <Panorama />
 <div class="title-screen">
@@ -44,7 +50,7 @@
 			}
 		]} />
 	</div>
-	<Footer branding="Minecraft 1.21.1" copyright="Copyright Mojang AB. Do not distribute!" />
+	<Footer branding={branding} copyright="Copyright Mojang AB. Do not distribute!" />
 </div>
 
 <style>
