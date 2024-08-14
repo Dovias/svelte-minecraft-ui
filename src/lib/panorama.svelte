@@ -1,7 +1,14 @@
+<script context="module" lang="ts">
+	export type PanoramaProps = {
+			speed?: number;
+	}
+</script>
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
+	export let speed: NonNullable<PanoramaProps['speed']> = 0.0005;
 
 	let canvas: HTMLCanvasElement;
 
@@ -16,16 +23,23 @@
 		const skyboxLoader = new THREE.CubeTextureLoader();
 		skyboxLoader.setPath('/panorama/');
 
-		const skybox = skyboxLoader.load([
+		scene.background = skyboxLoader.load([
 			'right.png',
-			'left.png', 
+			'left.png',
 			'top.png',
 			'bottom.png',
 			'front.png',
 			'back.png'
-		]);
+    ]);
 
-		scene.background = skybox;
+		// create a container for the camera in order to ignore tilt
+		const cameraContainer = new THREE.Object3D();
+		scene.add(cameraContainer);
+		cameraContainer.add(camera);
+
+		// tilt the camera and rotate it back to match minecraft's panorama starting point
+		camera.rotation.x = THREE.MathUtils.degToRad(20);
+		camera.rotation.y = THREE.MathUtils.degToRad(-180);
 
 		function onWindowResize() {
 			const canvas = renderer.domElement;
@@ -41,9 +55,9 @@
 		function animate() {
 			window.requestAnimationFrame(animate);
 
-			camera.rotateY(0.0005);
-      		renderer.render(scene, camera);
-    	}
+			cameraContainer.rotateY(speed);
+			renderer.render(scene, camera);
+		}
 
 		animate();
 
