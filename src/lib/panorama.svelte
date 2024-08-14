@@ -8,7 +8,7 @@
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
-	export let speed: NonNullable<PanoramaProps['speed']> = 0.0005;
+	export let speed: NonNullable<PanoramaProps['speed']> = -0.0005;
 
 	let canvas: HTMLCanvasElement;
 
