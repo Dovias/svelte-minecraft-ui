@@ -9,7 +9,7 @@
 </script>
 
 <header class="header">
-	<img src="branding.png" class="branding" alt="branding" />
+	<img src="branding/game.png" class="branding" alt="branding" />
 	{#if splashText && splashText.trim().length > 0}
 		<p class="splash">{splashText}</p>
 	{/if}
