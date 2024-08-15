@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	export let progress: number;
+	export let progress: number = 0;
+	export let monochrome: boolean = false
 </script>
 
-<div class="overlay" transition:fade={{ delay: 500, duration: 1000 }}>
+<div class="overlay" class:monochrome transition:fade={{ delay: 500, duration: 1000 }}>
 	<div class="content">
 		<img src="branding/studio.png" alt="Studio branding" class="branding">
 		<progress value={progress} max="100" class="progress-bar" transition:fade={{ duration: 1000 }}></progress>
@@ -27,9 +28,13 @@
 			background: #EF323D;
 	}
 
+	.monochrome {
+			background: #000;
+	}
+
 	.content {
 		margin: auto;
-		padding-top: 5%;
+		padding-top: 8%;
 
 	  max-width: 60%;
 	  max-height: 60%;
@@ -38,9 +43,13 @@
 	.branding {
 		display: block;
 
+	  width: 84em;
 
 	  max-width: 100%;
 	  max-height: 100%;
+
+		image-rendering: crisp-edges;
+
 		margin: auto;
 	}
 
@@ -48,14 +57,14 @@
 	  display: block;
 
 		width: 100%;
-	  height: 1.25em;
+	  height: 1.5em;
 
-	  margin-top: 18%;
+	  margin-top: 20%;
 
 	  background: none;
 
-		border: 0.15em solid transparent;
-		outline: 0.15em solid #fff;
+		border: 0.225em solid transparent;
+		outline: 0.225em solid #fff;
   }
 
   .progress-bar::-webkit-progress-bar {
